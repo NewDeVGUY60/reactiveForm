@@ -4,6 +4,11 @@
         <label>
             Nom:
             <input type="text" formControlName="userName">
+            <div *ngIf="userForm.controls['userName'].errors && !userForm.controls['userName'].pristine"
+                class="error-msg">
+                <div [hidden]="!userForm.controls['userName'].errors">username is required.</div>
+                <div [hidden]="!userForm.controls['userName'].invalid">username is invalid.</div>
+            </div>
         </label>
     </div>
     <div>
@@ -11,31 +16,44 @@
             E-mail:
             <input type="mail" formControlName="userMail">
         </label>
+        <div *ngIf="userForm.get('userMail')?.errors && !userForm.get('userMail')?.pristine"
+        class="error-msg">
+        <div [hidden]="!userForm.get('userMail')?.errors?.['required']">password is required.</div>
+        <div [hidden]="!userForm.get('userMail')?.invalid">password is invalid.</div>
+        {{ userForm.get('userMail')?.errors?.['email'].rules }}
     </div>
-    <div>
+    </div>
         <label>
             Mot de passe:
             <input type="password" formControlName="userPassword">
         </label>
-    </div>
-    <div formGroupName="userAdress">
-        <h2>Addresse:</h2>
-        <label>
-            Rue:
-            <input type="text" formControlName="userStreet">
-        </label>
-        <label>
-            Code postal:
-            <input type="text" formControlName="userZipCode">
-        </label>
-        <label>
-            Ville:
-            <input type="text" formControlName="userCity">
-        </label>
-    </div>
+        <div *ngIf="userForm.get('userPassword')?.errors && !userForm.get('userPassword')?.pristine"
+            class="error-msg">
+            <div [hidden]="!userForm.get('userPassword')?.errors?.['required']">password is required.</div>
+            <div [hidden]="!userForm.get('userPassword')?.invalid">password is invalid.</div>
+            {{ userForm.get('userPassword')?.errors?.['password'].rules }}
+        </div>
+        <div formGroupName="userAdress">
+            <h2>Addresse:</h2>
+            <label>
+                Rue:
+                <input type="text" formControlName="userStreet">
+            </label>
+            <label>
+                Code postal:
+                <input type="text" formControlName="userZipCode">
+            </label>
+            <label>
+                Ville:
+                <input type="text" formControlName="userCity">
+            </label>
+        </div>
 
-    <button type="submit">Incription</button>
+        <button type="submit">Incription</button>
+        
+
 </form>
 
 
-<p>{{ user | json }}</p>
+
+        <p>{{ user | json }}</p>

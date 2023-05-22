@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupName } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { passwordValidator } from '../password-validator';
+import { emailValidator } from '../mail-validator';
 
 @Component({
   selector: 'app-signin-reactive-form',
@@ -13,13 +15,13 @@ export class SigninReactiveFormComponent {
   constructor(private fb : FormBuilder){}
 
   userForm = this.fb.group({
-    userName: [''],
-    userMail: [''],
-    userPassword: [''],
+    userName: ['',[Validators.required]],
+    userMail: ['',[Validators.required, emailValidator]],
+    userPassword: ['', [Validators.required, passwordValidator]],
     userAdress: this.fb.group({
-      userStreet: [''],
-      userZipCode: [''],
-      userCity: ['']
+      userStreet: ['',[Validators.required]],
+      userZipCode: ['',[Validators.required]],
+      userCity: ['',[Validators.required]]
     })
   });
 
