@@ -1,0 +1,41 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <h1>Utilisateur:</h1>
+    <div>
+        <label>
+            Nom:
+            <input type="text" formControlName="userName">
+        </label>
+    </div>
+    <div>
+        <label>
+            E-mail:
+            <input type="mail" formControlName="userMail">
+        </label>
+    </div>
+    <div>
+        <label>
+            Mot de passe:
+            <input type="password" formControlName="userPassword">
+        </label>
+    </div>
+    <div formGroupName="userAdress">
+        <h2>Addresse:</h2>
+        <label>
+            Rue:
+            <input type="text" formControlName="userStreet">
+        </label>
+        <label>
+            Code postal:
+            <input type="text" formControlName="userZipCode">
+        </label>
+        <label>
+            Ville:
+            <input type="text" formControlName="userCity">
+        </label>
+    </div>
+
+    <button type="submit">Incription</button>
+</form>
+
+
+<p>{{ user | json }}</p>
